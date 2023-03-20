@@ -311,7 +311,7 @@ float testVisualisationC(){
 	float interieure[2]={17.0,18.0};
 	char temoin_chauffe[8];
 
-	float puissance_read;
+	// float puissance_read;
 	float exterieure_read;
 	float interieure_read;
 	char temoin_chauffe_read[8];
@@ -473,7 +473,7 @@ float testVisualisationC(){
 float testRegulationTOR(){
 	float score = 0.0;
 	int nPassedTest=0;
-	float consigne = 19.0;
+	// float consigne = 19.0;
 	float tInt0 = 19.5;
 	float deltaT = -0.5;
 	int nT = 3;
