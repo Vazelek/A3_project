@@ -2,9 +2,14 @@
 	 #include <stdlib.h>
     #include "regulation.h"
 
-	float regulation(int type){
-        if (type==1){
-            return 50;
+	float regulation(int regul, float consigne,float* tabT, int nT){
+        if (regul==1){
+            if (consigne > tabT[nT-1]){
+                return 50;
+            }
+            else{
+                return 0;
+            }
         }
         else{
             
