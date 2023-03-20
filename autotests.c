@@ -5,6 +5,7 @@
 #include "visualisationC.h"
 #include "regulation.h"
 #include <math.h>
+// #define DISPLAY_DEBUG
 float testConsigne(){
 	
 	float score=0.0;
@@ -613,7 +614,7 @@ float testRegulationPID(){
 		{
 			faux_comparaison_attendu_a=1;
 		}
-		//printf("commande = %f attendu = %f\n",cmd, attendu[i]);
+		// printf("commande = %f attendu = %f\n",cmd, attendu[i]);
 	}
 	
 	if(faux_comparaison_attendu_a==1){
