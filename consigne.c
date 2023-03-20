@@ -17,8 +17,8 @@ float consigne(float thermostatPrec_f)
         if (NULL == ptr) {
             printf("file can't be opened \n");
         }
-        fgets(cons, 4, ptr);
-        thermostat_f = atoll(cons);
+        fgets(cons, 6, ptr);
+        thermostat_f = atof(cons);
         fclose(fileptr);
         remove (".verrouConsigne");
     }
