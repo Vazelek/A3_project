@@ -43,7 +43,7 @@ void visualisationT(temp_t myTemp)
     remove(".verrouData");
 
 }
-
+/*
 int main(){
     temp_t myTemp;
     myTemp.exterieure = 15.0;
@@ -51,3 +51,4 @@ int main(){
     visualisationT(myTemp);
     return 0;
 }
+ */
