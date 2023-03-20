@@ -29,12 +29,28 @@ void visualisationT(temp_t myTemp)
     unsigned short int temoin = 0;
     fgets(str, 8, fileptr);
     temoin = (strcmp(str, "true\r\n") == 0); // strcmp = 0 if str == "true\n"
+    
+    fclose(fileptr);
+
+    fileptr = fopen("data.txt","w");
+	if(fileptr == NULL){
+		perror("File data.txt does not exist");
+		return;
+	}
+
+    fprintf(fileptr, "%s\n", temoin ? "true" : "false");
+    fprintf(fileptr, "%.2f\n", myTemp.interieure);
+    fprintf(fileptr, "%.2f\n", myTemp.exterieure);
+    
+    fclose(fileptr);
+    
+    /*printf("%s\n", temoin ? "true" : "false");
     fgets(str, 8, fileptr);
     myTemp.interieure = atof(str);
+    printf("%f\n", myTemp.interieure);
     fgets(str, 8, fileptr);
     myTemp.exterieure = atof(str);
-
-    fclose(fileptr);
+    printf("%f\n", myTemp.exterieure);*/
 
     remove(".verrouData");
 
