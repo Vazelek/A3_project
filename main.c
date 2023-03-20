@@ -9,6 +9,7 @@
 int main (int argc, char** argv){
 
     testConsigne();
+    printf("hfehfez\n");
 
     return 0;
 }
