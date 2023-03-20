@@ -2,3 +2,4 @@
 *.py
 test
 .idea*
+.verrou*
