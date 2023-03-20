@@ -25,10 +25,10 @@ void visualisationT(temp_t myTemp)
 		return;
 	}
 
-    char str[8]; // longest string : "false\r\n\0"
+    char str[6]; // longest string : "false\0"
     unsigned short int temoin = 0;
-    fgets(str, 8, fileptr);
-    temoin = (strcmp(str, "true\r\n") == 0); // strcmp = 0 if str == "true\n"
+    fscanf(fileptr, "%s", str);
+    temoin = (strcmp(str, "true") == 0); // strcmp = 0 if str == "true\n"
     
     fclose(fileptr);
 
