@@ -5,7 +5,6 @@
 #include "visualisationC.h"
 #include "regulation.h"
 #include <math.h>
-// #define DISPLAY_DEBUG
 float testConsigne(){
 	
 	float score=0.0;
@@ -236,7 +235,15 @@ float testVisualisationT(){
 		fclose(pf);
 		
 		// Create lock file if only it does not exist
-		pf = fopen(".verrouData","wx");
+		
+		
+		
+		if( access( ".verrouData", F_OK )!=-1)
+		{
+			perror("in testu_visualisationT.c, file verrouData : existe deja");
+			return score;
+		}
+		pf = fopen(".verrouData","w");
 		if(pf==NULL){
 			perror("in testu_visualisationT.c, file verrouData : error to create");
 			return score;
@@ -312,7 +319,7 @@ float testVisualisationC(){
 	float interieure[2]={17.0,18.0};
 	char temoin_chauffe[8];
 
-	// float puissance_read;
+	float puissance_read;
 	float exterieure_read;
 	float interieure_read;
 	char temoin_chauffe_read[8];
@@ -409,7 +416,13 @@ float testVisualisationC(){
 		fclose(pf);
 	
 		// Create lock file
-		pf = fopen(".verrouData","wx");
+		
+		if( access( ".verrouData", F_OK )!=-1)
+		{
+			perror("in testu_visualisationC.c, file verrouData : existe deja");
+			return score;
+		}
+		pf = fopen(".verrouData","w");
 		if(pf==NULL){
 			perror("in testu_visualisationC.c, file verrouData : error to create");
 			return score;
@@ -474,7 +487,7 @@ float testVisualisationC(){
 float testRegulationTOR(){
 	float score = 0.0;
 	int nPassedTest=0;
-	// float consigne = 19.0;
+	float consigne = 19.0;
 	float tInt0 = 19.5;
 	float deltaT = -0.5;
 	int nT = 3;
@@ -602,7 +615,7 @@ float testRegulationPID(){
 	cmd=cmd_target+100;
 	
 	attendu[0]=0.55;
-	for(i=1;i<nTT;i++){
+	for(i=1;i<nTTb;i++){
 	  attendu[i] = attendu[i-1]+1;
 	}
 	
@@ -614,7 +627,7 @@ float testRegulationPID(){
 		{
 			faux_comparaison_attendu_a=1;
 		}
-		// printf("commande = %f attendu = %f\n",cmd, attendu[i]);
+		//printf("commande = %f attendu = %f\n",cmd, attendu[i]);
 	}
 	
 	if(faux_comparaison_attendu_a==1){
