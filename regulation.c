@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "regulation.h"
 
 float regulation_TOR(float consigne, float* tabT, int nT){
@@ -23,11 +24,11 @@ float regulation_PID(float consigne, float* tabT, int nT){
 
     if(nT > 1){
         for(int i = 0; i < nT - 1; i++){
-            i_val += (((consigne - tabT[i]) + (consigne - tabT[i + 1])) / 2) * dt;
+            i_val += ((fabs(consigne - tabT[i]) + fabs(consigne - tabT[i + 1])) / 2) * dt;
         }
         i_val *= 0.2;
 
-        d_val = (((consigne - tabT[nT - 1]) - (consigne - tabT[nT - 2])) / dt) * 0.15;
+        d_val = ((fabs(consigne - tabT[nT - 1]) - fabs(consigne - tabT[nT - 2])) / dt) * 0.15;
     }
 
     return p_val + i_val + d_val;
