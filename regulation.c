@@ -14,6 +14,9 @@ float regulation_TOR(float consigne, float* tabT, int nT){
 float regulation_PID(float consigne, float* tabT, int nT){
     float dt = 10;
     float e = consigne - tabT[nT - 1];
+    if(e <= 0){
+        return 0;
+    }
     float p_val = e * 1.1;
     float i_val = 0;
     float d_val = 0;
@@ -31,7 +34,8 @@ float regulation_PID(float consigne, float* tabT, int nT){
 }
 	 
 float regulationTest(int regul,float consigne,float* tabT, int nT){
-    float cmd;
+    printf("micro chili 1\n");
+    float cmd = 0;
 
     if(regul == 1){
         cmd = regulation_TOR(consigne, tabT, nT);
