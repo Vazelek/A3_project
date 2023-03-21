@@ -34,7 +34,6 @@ float regulation_PID(float consigne, float* tabT, int nT){
 }
 	 
 float regulationTest(int regul,float consigne,float* tabT, int nT){
-    printf("micro chili 1\n");
     float cmd = 0;
 
     if(regul == 1){
