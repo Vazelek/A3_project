@@ -8,7 +8,7 @@
 #include "autotests.h"
 
 int main(){
-
+/*
 	if(access(".verrouData", F_OK) == 0) { // file exists
         remove(".verrouData");
     }
@@ -40,8 +40,8 @@ int main(){
 
 	simDestruct(sim_params); // destruction de simulateur
 	return EXIT_SUCCESS;
+*/
 
-/*
     float score1=0,score2=0,score3=0,score4=0,score5=0;
     score1 = testVisualisationT();
     score2 = testConsigne();
@@ -55,5 +55,5 @@ int main(){
     printf("testRegulationTOR\t:score=%g %%\n",score4*100);
     printf("testRegulationPID\t:score=%g %%\n",score5*100);
     return EXIT_SUCCESS;
-    */
+    
 }
