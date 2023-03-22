@@ -1,5 +1,3 @@
-#include <windows.h>
-#include "ftd2xx.h"
 #include "releve.h"
 
 
