@@ -26,7 +26,7 @@ int main(){
 	float cmd = 10;
 	float puissance = 50;
 	float tabT[10000];
-	while(cmd != 5 && i < 10000){
+	while(cmd <= 5 && i < 10000){
 		tabT[i] = temperature.interieure;
 		visualisationT(temperature);
 		cmd = consigne(cmd);
