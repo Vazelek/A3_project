@@ -15,10 +15,10 @@ FT_HANDLE init_usb(){
     ftStatus2 = FT_SetDataCharacteristics(ftHandle, FT_BITS_8, FT_STOP_BITS_1, FT_PARITY_NONE); // Set 8 data bits, 1 stop bit and no parity
     ftStatus3 = FT_SetFlowControl(ftHandle, FT_FLOW_NONE, 0x11, 0x13); // No flow and 0x11 and 0x13 are useless
     if (ftStatus == FT_OK && ftStatus2 == FT_OK && ftStatus3 == FT_OK) {
-        return ftHandle// FT_SetBaudRate OK +  FT_SetDataCharacteristics OK + FT_SetFlowControl OK
+        return ftHandle; // FT_SetBaudRate OK +  FT_SetDataCharacteristics OK + FT_SetFlowControl OK
     }
     else {
-        return NULL;// FT_SetBaudRate Failed +-  FT_SetDataCharacteristics Failed +- FT_SetFlowControl Failed
+        return NULL; // FT_SetBaudRate Failed +-  FT_SetDataCharacteristics Failed +- FT_SetFlowControl Failed
     }
     FT_Close(ftHandle);
 }
