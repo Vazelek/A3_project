@@ -8,6 +8,8 @@
 
 int main(){
 
+    printf("Test AUTOTESTS\n\n");
+
     float score1=0,score2=0,score3=0,score4=0,score5=0;
     score1 = testVisualisationT();
     score2 = testConsigne();
