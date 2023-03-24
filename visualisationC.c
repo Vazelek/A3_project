@@ -41,8 +41,8 @@ void visualisationC(float puissance_f)
 	}
 
     fprintf(fileptr, "%s\n", puissance_f ? "true" : "false"); // if pussance_f = 1 --> true else false
-    fprintf(fileptr, "%.2f\n", temp_int); // write temp_int
-    fprintf(fileptr, "%.2f\n", temp_ext); // write temp_ext
+    fprintf(fileptr, "%.2f\n", temp_int); // copy temp_int
+    fprintf(fileptr, "%.2f\n", temp_ext); // copy temp_ext
     
     fclose(fileptr);
 

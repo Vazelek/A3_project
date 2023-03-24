@@ -39,9 +39,9 @@ void visualisationT(temp_t myTemp)
 		return;
 	}
 
-    fprintf(fileptr, "%s\n", temoin ? "true" : "false"); // if pussance_f = 1 --> true else false
-    fprintf(fileptr, "%.2f\n", myTemp.interieure); // copy tempInt
-    fprintf(fileptr, "%.2f\n", myTemp.exterieure); // copy tempExt
+    fprintf(fileptr, "%s\n", temoin ? "true" : "false"); // copy temoin de chuaffage
+    fprintf(fileptr, "%.2f\n", myTemp.interieure); // write temp_int
+    fprintf(fileptr, "%.2f\n", myTemp.exterieure); // write temp_ext
     
     fclose(fileptr);
 
