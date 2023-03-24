@@ -20,24 +20,31 @@ int main(){
 
 	temp_t temperature;
 	temperature.exterieure = 14.0;
-	temperature.interieure = 30.0;
+	temperature.interieure = 15.0;
 	struct simParam_s*  sim_params = simConstruct(temperature);
 
-	int i = 0;
 	unsigned short int regul = 2;
-	float cmd = 10;
+	float tint_old = 15;
+	float tint = 15;
+	float cons_old = 10;
+	float cons = 10;
 	float puissance = 50;
-	float tabT[10000];
-	while(cmd > 5 && i < 10000){
-		tabT[i] = temperature.interieure;
+	unsigned char first = 1;
+	float pid_i_old = 0;
+	while(cons > 5){
 		visualisationT(temperature);
-		cmd = consigne(cmd);
-		puissance = regulationTest(regul, cmd, tabT, i + 1);
-		sim_params->tempExt_f = temperature.exterieure;
-		sim_params->tempInt_f = temperature.interieure;
-		temperature=simCalc(puissance, sim_params);
+		cons_old = cons;
+		cons = consigne(cons);
+		puissance = regulation_Global(regul, cons, tint, cons_old, tint_old, &pid_i_old, first);
+		/*sim_params->tempExt_f = temperature.exterieure;
+		sim_params->tempInt_f = temperature.interieure;*/
+		tint_old = tint;
+		temperature = simCalc(puissance, sim_params);
+		tint = temperature.interieure;
 		visualisationC(puissance);
-		i++;
+		if(first){
+			first = 0;
+		}
 	}
 
 	simDestruct(sim_params); // destruction de simulateur

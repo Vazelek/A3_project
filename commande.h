@@ -6,6 +6,6 @@
 #include <stdio.h>
 
 
-void write_puis(FT_HANDLE ftHandle, float puissance);
+FT_STATUS write_puis(FT_HANDLE ftHandle, float puissance);
 
 #endif

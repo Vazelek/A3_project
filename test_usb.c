@@ -14,18 +14,36 @@ int main(){
 
     ftStatus = FT_Open(0, &ftHandle);
     if(ftStatus != FT_OK) {
-        // FT_Open failed
-        return 0;
+        printf("FT_Open failed\n");
+        return 1;
     }
 
     ftStatus = FT_SetBaudRate(ftHandle, 115200); // Set baud rate to 115200
+    if(ftStatus != FT_OK) {
+        printf("FT_SetBaudRate failed\n");
+        return 1;
+    }
     ftStatus = FT_SetDataCharacteristics(ftHandle, FT_BITS_8, FT_STOP_BITS_1, FT_PARITY_NONE); // Set 8 data bits, 1 stop bit and no parity
+    if(ftStatus != FT_OK) {
+        printf("FT_SetDataCharacteristics failed\n");
+        return 1;
+    }
     ftStatus = FT_SetFlowControl(ftHandle, FT_FLOW_NONE, 0x11, 0x13); // No flow and 0x11 and 0x13 are useless
+    if(ftStatus != FT_OK) {
+        printf("FT_SetFlowControl failed\n");
+        return 1;
+    }
     ftStatus = FT_SetTimeouts(ftHandle, 40, 0);
+    if(ftStatus != FT_OK) {
+        printf("FT_SetTimeouts failed\n");
+        return 1;
+    }
 
-    while (1){
-
-        read_temp(ftHandle);
+    float cmd = consigne(10);
+    temp_t temperatures;
+    
+    while(cmd > 5){
+        cmd = consigne(cmd);
     }
     FT_Close(ftHandle);
     return 0;
