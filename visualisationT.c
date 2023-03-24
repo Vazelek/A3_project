@@ -5,7 +5,7 @@
 
 void visualisationT(temp_t myTemp)
 {
-    if (access(".verrouData", F_OK) == 0) { // file exists
+    if (access(".verrouData", F_OK) == 0) { // file verrouData exists
         return;
     }
 
@@ -27,31 +27,25 @@ void visualisationT(temp_t myTemp)
 
     char str[6]; // longest string : "false\0"
     unsigned short int temoin = 0;
-    fscanf(fileptr, "%s", str);
+    fscanf(fileptr, "%s", str);  // read first line : true or false
     temoin = (strcmp(str, "true") == 0); // strcmp = 0 if str == "true\n"
     
     fclose(fileptr);
 
+    //write in data.txt
     fileptr = fopen("data.txt","w");
 	if(fileptr == NULL){
 		perror("File data.txt does not exist");
 		return;
 	}
 
-    fprintf(fileptr, "%s\n", temoin ? "true" : "false");
-    fprintf(fileptr, "%.2f\n", myTemp.interieure);
-    fprintf(fileptr, "%.2f\n", myTemp.exterieure);
+    fprintf(fileptr, "%s\n", temoin ? "true" : "false"); // if pussance_f = 1 --> true else false
+    fprintf(fileptr, "%.2f\n", myTemp.interieure); // copy tempInt
+    fprintf(fileptr, "%.2f\n", myTemp.exterieure); // copy tempExt
     
     fclose(fileptr);
-    
-    /*printf("%s\n", temoin ? "true" : "false");
-    fgets(str, 8, fileptr);
-    myTemp.interieure = atof(str);
-    printf("%f\n", myTemp.interieure);
-    fgets(str, 8, fileptr);
-    myTemp.exterieure = atof(str);
-    printf("%f\n", myTemp.exterieure);*/
 
-    remove(".verrouData");
+
+    remove(".verrouData"); // delete file verrouData
 
 }

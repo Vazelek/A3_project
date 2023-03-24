@@ -3,10 +3,10 @@
 
 #include <windows.h>
 #include "ftd2xx.h"
+#include "define.h"
 #include <stdio.h>
 
 
-FT_HANDLE init_usb();
-void read_temp(FT_HANDLE ftHandle);
+FT_STATUS read_temp(FT_HANDLE ftHandle, temp_t *temp);
 
 #endif
