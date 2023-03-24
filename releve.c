@@ -51,8 +51,8 @@ void read_temp(FT_HANDLE ftHandle){
         if (ftStatus == FT_OK) {
 //            printf("ca lis\n");
             for (int i = 0; i < 6; ++i) {
-                tempInt = RxBuffer[i]
-                printf("%x",RxBuffer[i]);
+                tempInt = RxBuffer[i];
+                //printf("%x",RxBuffer[i]);
                 printf("\n");
             }
 
