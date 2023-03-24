@@ -29,13 +29,13 @@ FT_STATUS read_temp(FT_HANDLE ftHandle, temp_t *temp){
         ftStatus = FT_Read(ftHandle,RxBuffer,RxBytes,&BytesReceived);
         if (ftStatus == FT_OK) {
 //            printf("ca lis\n");
-<<<<<<< HEAD
-            for (int i = 0; i < 6; ++i) {
-                tempInt = RxBuffer[i];
-                //printf("%x",RxBuffer[i]);
-                printf("\n");
-            }
-=======
+
+//            for (int i = 0; i < 6; ++i) {
+//                tempInt = RxBuffer[i];
+//                //printf("%x",RxBuffer[i]);
+//                printf("\n");
+//            }
+
             tempExtSOT |= RxBuffer[0] & 0b1111;
             tempExtSOT |= (RxBuffer[1] & 0b1111) << 4;
             tempExtSOT |= (RxBuffer[2] & 0b1111) << 8;
@@ -58,7 +58,6 @@ FT_STATUS read_temp(FT_HANDLE ftHandle, temp_t *temp){
 //            }
 
 
->>>>>>> a44533b (releve working)
 
         }
 
