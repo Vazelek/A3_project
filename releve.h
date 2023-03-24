@@ -7,6 +7,6 @@
 
 
 FT_HANDLE init_usb();
-void read_temp();
+void read_temp(FT_HANDLE ftHandle);
 
 #endif

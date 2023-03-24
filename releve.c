@@ -39,22 +39,23 @@ void read_temp(FT_HANDLE ftHandle){
 
     ftStatus = FT_GetStatus(ftHandle,&RxBytes,&TxBytes,&EventDWord);
     if (ftStatus == FT_OK) {
-        printf("premiere etape\n");
+//        printf("premiere etape\n");
     }
-
+//    printf("%d\n",RxBytes);
     if (RxBytes > 0) {
-        printf("deuxieme etape\n");
-        ftStatus = FT_Read(ftHandle,RxBuffer,6,&BytesReceived);
+
+//        printf("deuxieme etape\n");
+        ftStatus = FT_Read(ftHandle,RxBuffer,RxBytes,&BytesReceived);
         if (ftStatus == FT_OK) {
-            printf("ca lis\n");
+//            printf("ca lis\n");
         }
 
-        printf("combien de bytes lu : %ld\n",BytesReceived);
-        for (int i = 0; i < 5; ++i) {
+//        printf("combien de bytes lu : %ld\n",BytesReceived);
+        for (int i = 0; i < 6; ++i) {
             printf("%x",RxBuffer[i]);
             printf("\n");
         }
-
+/*
             for (int i = 1; i < 2; ++i) {
                 printf("%x",RxBuffer[i]);
             }
@@ -67,9 +68,28 @@ void read_temp(FT_HANDLE ftHandle){
                 printf("%x",RxBuffer[i]);
             }
             printf("\n");
-
+*/
     }
-    FT_Close(ftHandle);
+
+/*
+    FT_STATUS ftStatus;
+    DWORD RxBytes;
+    DWORD TxBytes;
+    DWORD BytesReceived;
+    DWORD EventDWord;
+    unsigned int SOT_ext = 0;
+    unsigned int SOT_int = 0;
+
+    // Vérification de la disponibilité de données
+    ftStatus = FT_GetStatus(ftHandle, &RxBytes, &TxBytes, &EventDWord);
+
+    // Si des données sont disponibles à la lecture
+    if (ftStatus == FT_OK && RxBytes > 0)
+    {
+        printf("fezezfgfyezhjfezhjfez\n");
+    }
+    */
+//    FT_Close(ftHandle);
 }
 
 
