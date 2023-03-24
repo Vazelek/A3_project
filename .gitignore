@@ -1,7 +1,9 @@
 *.txt
 *.py
-test
 .idea*
 .verrou*
 .vscode*
-test.exe
+*.exe
+*.o
+simu
+autotests
