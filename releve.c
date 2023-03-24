@@ -21,13 +21,25 @@ FT_STATUS read_temp(FT_HANDLE ftHandle, temp_t *temp){
         // read OK
         if (ftStatus == FT_OK) {
             // set tempExtSOT by reading 3 first bytes and taking only first 4 bits
-            tempExtSOT |= RxBuffer[0] & 0b1111;
-            tempExtSOT |= (RxBuffer[1] & 0b1111) << 4;
-            tempExtSOT |= (RxBuffer[2] & 0b1111) << 8;
+            if (RxBuffer[0] >> 4 == 0b0000){
+                tempExtSOT |= RxBuffer[0] & 0b1111;
+            }
+            if (RxBuffer[1] >> 4 == 0b0001){
+                tempExtSOT |= (RxBuffer[1] & 0b1111) << 4;
+            }
+            if (RxBuffer[2] >> 4 == 0b0100){
+                tempExtSOT |= (RxBuffer[2] & 0b1111) << 8;
+            }
             // set tempExtSOT by reading 3 last bytes and taking only first 4 bits
-            tempIntSOT |= RxBuffer[3] & 0b1111;
-            tempIntSOT |= (RxBuffer[4] & 0b1111) << 4;
-            tempIntSOT |= (RxBuffer[5] & 0b1111) << 8;
+            if (RxBuffer[3] >> 4 == 0b1000){
+                tempIntSOT |= RxBuffer[3] & 0b1111;
+            }
+            if (RxBuffer[4] >> 4 == 0b1001){
+                tempIntSOT |= (RxBuffer[4] & 0b1111) << 4;
+            }
+            if (RxBuffer[5] >> 4 == 0b1100){
+                tempIntSOT |= (RxBuffer[5] & 0b1111) << 8;
+            }
             // convert SOT in real temp
             tempExt = -39.64 + 0.04 * tempExtSOT;
             tempInt = -39.64 + 0.04 * tempIntSOT;
