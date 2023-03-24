@@ -10,7 +10,6 @@ int main(){
 
 	printf("Test SIMULATEUR\n\n");
 
-	// May be done by make
 	if(access(".verrouData", F_OK) == 0) { // file exists
         remove(".verrouData");
     }

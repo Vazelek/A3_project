@@ -66,20 +66,22 @@ float regulation_TOR(float consigne, float tint){
 float regulation_PID(float consigne, float tint, float consigne_old, float tint_old, float *pid_i_old, unsigned char premier_echantillon){
     float dt = 10;
     float e = consigne - tint;
-    if(e <= 0){
-        return 0;
-    }
+    // if(e <= 0){
+    //     return 0;
+    // }
     float p_val = e * 1.1;
     float i_val = 0;
     float d_val = 0;
 
     if(!premier_echantillon){
-        i_val = (((fabs(consigne - tint) + fabs(consigne_old - tint_old)) / 2) * dt) + *pid_i_old;
+        i_val = ((((consigne - tint) + (consigne_old - tint_old)) / 2) * dt) + *pid_i_old;
         *pid_i_old = i_val;
         i_val *= 0.2;
 
-        d_val = ((fabs(consigne - tint) - fabs(consigne_old - tint_old)) / dt) * 0.15;
+        d_val = (((consigne - tint) - (consigne_old - tint_old)) / dt) * 0.15;
     }
+
+    // printf("%f / %f / %f\n", p_val, i_val, d_val);
 
     return p_val + i_val + d_val;
 }

@@ -9,6 +9,15 @@
 
 int main(){
 
+	printf("Test USB\n\n");
+
+    if(access(".verrouData", F_OK) == 0) { // file exists
+        remove(".verrouData");
+    }
+	if(access(".verrouConsigne", F_OK) == 0) { // file exists
+        remove(".verrouConsigne");
+    }
+
     FT_HANDLE ftHandle;
     FT_STATUS ftStatus;
 
@@ -39,11 +48,40 @@ int main(){
         return 1;
     }
 
-    float cmd = consigne(10);
+    float cons = consigne(10);
     temp_t temperatures;
-    
-    while(cmd > 5){
-        cmd = consigne(cmd);
+
+    unsigned short int regul = 2;
+	float tint_old = 15;
+	float tint = 15;
+	float cons_old = cons;
+	float puissance = 50;
+	unsigned char premiere_iteration = 1;
+	float pid_i_old = 0;
+
+    while(cons > 5){
+        cons_old = cons;
+        cons = consigne(cons);
+        tint_old = tint;
+        ftStatus = read_temp(ftHandle, &temperatures);
+        if(ftStatus != FT_OK) {
+            printf("read_temp failed\n");
+            return 1;
+        }
+        tint = temperatures.interieure;
+        puissance = regulation_Global(regul, cons, tint, cons_old, tint_old, &pid_i_old, premiere_iteration);
+        visualisationC(puissance);
+        visualisationT(temperatures);
+        ftStatus = write_puis(ftHandle, puissance);
+        if(ftStatus != FT_OK) {
+            printf("write_puis failed\n");
+            return 1;
+        }
+        if(premiere_iteration){
+            premiere_iteration = 0;
+        }
+
+        Sleep(40);
     }
     FT_Close(ftHandle);
     return 0;
