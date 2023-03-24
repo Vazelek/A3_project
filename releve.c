@@ -32,6 +32,8 @@ void read_temp(FT_HANDLE ftHandle){
     DWORD RxBytes;
     DWORD BytesReceived;
     char RxBuffer[6];
+    int tempInt = 0;
+    int tempExt = 0;
 
 
 
@@ -48,6 +50,12 @@ void read_temp(FT_HANDLE ftHandle){
         ftStatus = FT_Read(ftHandle,RxBuffer,RxBytes,&BytesReceived);
         if (ftStatus == FT_OK) {
 //            printf("ca lis\n");
+            for (int i = 0; i < 6; ++i) {
+                tempInt = RxBuffer[i]
+                printf("%x",RxBuffer[i]);
+                printf("\n");
+            }
+
         }
 
 //        printf("combien de bytes lu : %ld\n",BytesReceived);
